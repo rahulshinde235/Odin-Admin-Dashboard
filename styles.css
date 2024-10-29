@@ -1,0 +1,300 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+svg {
+  height: 2rem;
+  width: 2rem;
+}
+img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+span {
+  font-weight: bold;
+}
+button {
+  all: unset;
+  padding: 0.5em 1.5em;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 1.2rem;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+
+:root {
+  --primary-background-color: #f9fafb;
+  --primary-color: #2563eb;
+  --secondary-color: #fef08a;
+}
+li {
+  list-style: none;
+  color: white;
+  font-size: 1.5rem;
+}
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr 1fr;
+  background-color: var(--primary-background-color);
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.logo-container {
+  display: grid;
+  color: white;
+  padding: 0 2rem;
+  font-size: 2rem;
+  grid-template-columns: repeat(2, 0.4fr);
+  gap: 1rem;
+  align-items: center;
+  align-content: center;
+
+  svg {
+    fill: white;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+}
+
+.sidebar {
+  background-color: var(--primary-color);
+  grid-column: 1/2;
+  grid-row: 1/4;
+  display: grid;
+}
+.main {
+  max-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+}
+.header {
+  grid-row: 1/2;
+  display: grid;
+  grid-template-rows: auto auto;
+  padding: 1rem;
+  background-color: white;
+  height: 25vh;
+}
+
+.content {
+  grid-row: 2/3;
+  height: 73vh;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+.search-container,
+.info-container {
+  display: grid;
+  padding: 0 1rem;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.2rem;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  grid-column: 1/2;
+  display: grid;
+  grid-template-columns: 0.2fr 4fr;
+  gap: 1rem;
+  align-items: center;
+
+  svg {
+    justify-self: end;
+  }
+  input {
+    border-radius: 5px;
+    background-color: var(--primary-background-color);
+  }
+}
+
+.profile,
+.btn-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.info-card {
+  display: grid;
+  grid-template-columns: 0.5fr 3fr;
+  align-items: center;
+  gap: 1rem;
+
+  img {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+.greeting {
+  justify-self: start;
+  display: grid;
+  grid-template-rows: auto auto;
+  :nth-child(1) {
+    font-size: 1.2rem;
+  }
+  :nth-child(2) {
+    font-size: 2.2rem;
+  }
+}
+
+.notes-container {
+  grid-column: 1/2;
+  max-height: 70vh;
+  padding: 1rem;
+
+  > h2 {
+    font-size: 2rem;
+  }
+}
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  overflow-y: scroll;
+  height: 100%;
+  gap: 0.5rem;
+}
+.note {
+  display: grid;
+  position: relative;
+  grid-template-rows: auto auto;
+  background-color: white;
+  border-radius: 15px;
+  padding: 1rem;
+  width: 250px;
+  .icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: end;
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}
+.note:before {
+  content: "";
+  height: 100%;
+  width: 10px;
+  background-color: var(--secondary-color);
+  position: absolute;
+  border-radius: 15px 0 0 15px;
+}
+
+.aside {
+  padding: 1rem;
+  max-height: 75vh;
+}
+
+.announcements,
+.trending {
+  background-color: white;
+  border-radius: 15px;
+  display: grid;
+  align-items: end;
+  padding: 1rem;
+  justify-items: center;
+  overflow-y: scroll;
+  max-height: 40%;
+  margin: 1rem 0;
+}
+.announcements {
+  grid-row: 2/3;
+  .announcement {
+    border-bottom: 1px solid black;
+  }
+}
+
+.trending {
+  grid-row: 4/-1;
+  .trend {
+    border-bottom: 1px solid black;
+  }
+}
